@@ -38,8 +38,9 @@ mongodb_1.MongoClient.connect(DB_URL, (err, client) => {
     }
     let db = client.db(DB_NAME);
     let col = db.collection(COL_NAME);
+    mongoDBClient = client;
     // so far so good - let's start the service
-    app.listen(SVC_PORT, function () {
+    httpServer = app.listen(SVC_PORT, function () {
         log.info(__filename, SVC_NAME, 'Listening on port ' + SVC_PORT);
         // now handle routes with express
         app.get('/', (req, res) => {
